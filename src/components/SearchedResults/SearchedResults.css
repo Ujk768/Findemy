@@ -1,0 +1,12 @@
+.mainContainer{
+    color:black;
+}
+.discount{
+    text-decoration: line-through;
+}
+.original{
+    font-weight: 500;
+}
+.rating{
+    color:#f3ca8c;
+}

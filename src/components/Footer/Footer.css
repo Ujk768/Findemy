@@ -1,0 +1,91 @@
+.mainFooter1{
+    background-color: #f7f9fa;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+    padding: 10px;  
+    
+}
+.exploreBtn{
+    position: relative;
+    right:12px;
+    margin-top: 10px;
+    border: 1px solid black;
+    font-weight: 700;
+    padding: 5px;
+    background-color: transparent;
+    text-align: center;
+    padding: 10px;
+}
+.main-heading{
+    position: relative;
+    right:12px;
+}
+.coloured{
+    color: #5624d0;
+    text-decoration: underline;
+    font-weight: 700;
+    position: relative;
+    right: 10px;
+}
+.heading{
+    font-weight: 700;
+}
+.students{
+    color:#6a6f73;
+}
+
+.second-footer{
+    background-color: white;
+    padding: 40px;
+    
+}
+.box-logo{
+    position: relative;
+    right:20px;
+}
+.text{
+
+    text-align: center;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+
+.logos{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.third-footer{
+     /* padding: px; */
+    background-color: black;
+    color: white;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+.last-part{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.last-heading{
+    position: relative;
+    right: 10px;
+}
+.copyright{
+    border: 2px solid white;
+   
+}
+ .languageBtn{
+    margin-top: 10%;
+    background-color: black !important;
+    color: white;
+    border: 2px solid white;
+
+} 
+
+.lower-heading{
+    color: white;
+    font-size: large;
+}
+
+
+
+

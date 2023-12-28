@@ -1,0 +1,152 @@
+.content-row{
+    display: flex;
+    justify-content: end;
+}
+.checkout-navbar-main{
+    padding: 0.9rem 0.5rem;
+    padding-right: 0.9rem;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 8%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 50;
+}
+.checkout-nav-udemy-image{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkout-nav-cancel-button{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #5624d0;
+    background-color: transparent;
+    min-width: auto;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+.check-out-right{
+    display: flex;
+    justify-content: start;
+    background-color: rgb(246,249,250);
+}
+.checkout-right-side-main-row{
+    background: #f7f9fa;
+
+}
+.normal-text{
+    padding-left: 1em;
+}
+.checkout-head{
+    padding-bottom: 0.7em;
+}
+.paymenttext{
+    font-weight: 600;
+}
+.billing-text{
+    font-weight: 600;
+}
+.check-out-right-head{
+    height: 2em;
+}
+.payment-title{
+    display: flex;
+}
+.lock-payment{
+       position: relative;
+        left: 22em;
+         top: 0.8em;
+}
+.summary-text-col{
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+    
+}
+.original-price-text-row{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    border-bottom: 1px solid #d1d7dc;
+    padding-bottom: 0.4rem;
+}
+.original-price-text-col{
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 0;
+}
+.rupee-col{
+    text-align: end;
+    padding: 0;
+    margin: 0;
+}
+.total-rupee-col{
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-align: end;
+    padding: 0;
+    margin: 0;
+}
+.by-completing-text-col{
+    padding: 0;
+    margin: 0;
+    font-size: 0.78rem;
+    color: #6a6f73;
+}
+.by-completing-text-col a{
+    color: #5624d0;
+    margin-left: 0.3rem;
+}
+.by-completing-text-col a:hover{
+    color: #401b9c;
+}
+.proceed-button-col{
+    padding: 0;
+    margin: 0;
+    margin-top: 0.5rem;
+}
+.proceed-button{
+    width: 100%;
+    height: 3rem;
+    background-color: #a435f0;
+    color: white;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+.proceed-button:hover{
+    background-color: #8710d8;
+}
+.thirty-day-text-col{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #6a6f73;
+}
+.checkout-right-side-content-main-row{
+    padding-top: 5rem;
+    padding-left: 2.8rem;
+}
+.summary-text-col{
+    font-weight: 700;
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+    
+}
+.original-price-text-row{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    border-bottom: 1px solid #d1d7dc;
+    padding-bottom: 0.4rem;
+}

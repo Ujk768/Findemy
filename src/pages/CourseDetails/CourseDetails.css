@@ -1,0 +1,130 @@
+.course-strip{
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 16%);
+    top: 0;
+    bottom: auto;
+    padding: 0.5rem 2.4rem;
+    color: #fff;
+    background-color: #1c1d1f;
+    overflow-y: hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 250ms cubic-bezier(0,0,.38,.9);
+    color: white;
+    background-color: black;
+
+}
+
+.mainWrapper{
+    position: relative;
+    
+}
+.sideComponent{
+    position: absolute;
+    left: 67%;
+    width: 30vw;
+    border: 1px solid #d1d7dc;
+    margin: 2%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%) ;
+    font-family: udemy sans, -apple-system, BlinkMacSystemFont, Roboto, segoe ui,
+    Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+    segoe ui symbol;
+    background-color: white;
+    padding-top: 1%;
+}
+.course-1{
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: udemy sans, -apple-system, BlinkMacSystemFont, Roboto, segoe ui,
+    Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+    segoe ui symbol;
+    padding: 2%;
+}
+.course-2{
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: udemy sans, -apple-system, BlinkMacSystemFont, Roboto, segoe ui,
+    Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji,
+    segoe ui symbol;
+}
+.cartBtn{
+    width: 100%;
+    background-color: #a435f0;
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+}
+.buyNowBtn{
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    border-radius: 0;
+    border: 1px solid black;
+}
+.para{
+    font-size: 12px;
+    text-align: center;
+}
+.listele{
+    list-style: none;
+}
+.last-links{
+    text-decoration: underline;
+    font-weight: 500;
+}
+.sideComponent2{
+    position: fixed;
+    left: 67%;
+    width: 30vw;
+    top: 2%;
+    border: 1px solid #d1d7dc;
+    background-color: white;
+  
+}
+.sideComponentImgAfterScroll{
+    display: none;
+    height: 0;
+    width:0;
+    padding-bottom: 5%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+}
+.sideComponentImgBeforeScroll{
+
+}
+.instructor-img{
+    border-radius: 50%;
+    height: 60%;
+}
+.instructor-section{
+ 
+    height: 20%;
+}
+.styled{
+    color: #cec0fc
+}
+.spaced{
+    margin-right: 2%;
+}
+.stars{
+    color: #f3ca8c ;
+}
+.styled-2{
+    color: #5624d0;;
+}
+
+@media(max-width: 768.9px){
+    .sideComponent{
+        display: none;
+    }
+    .sideComponent2{
+        display: none;
+    }
+}

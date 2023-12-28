@@ -1,0 +1,23 @@
+.text{
+    text-align: left !important;
+    line-height: 1;
+    margin: 0;
+    color: black;
+    font-size: 0.8em !important;
+}
+.bodyText{
+    color: black;
+}
+.title{
+    color: black;
+    font-size: 1em !important;
+}
+.card-img{
+    border-radius: 0 !important;
+    border: 0px solid transparent !important;
+}
+.textPrice{
+    color: black;
+    font-size: 0.8em !important;
+    font-weight: 600;
+}

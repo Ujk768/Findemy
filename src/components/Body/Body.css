@@ -1,0 +1,56 @@
+.mainFooter1{
+    background-color: #f7f9fa;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+    padding: 10px;  
+    
+}
+.main-heading{
+    position: relative;
+    right:12px;
+}
+.coloured{
+    color: #5624d0;
+    text-decoration: underline;
+    font-weight: 700;
+    position: relative;
+    right: 10px;
+}
+.heading{
+    font-weight: 700;
+}
+.students{
+    color:#6a6f73;
+}
+.second-footer{
+    background-color: white;
+    padding: 40px;
+    
+}
+.box-logo{
+    position: relative;
+    right:20px;
+}
+.text{
+
+    text-align: center;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+
+.logos{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.first-title{
+    font-size: medium;
+    margin-left: 15px;
+    font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid black;
+}

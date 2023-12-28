@@ -1,0 +1,63 @@
+.input-box{
+    width: 34em;
+    height: 3em;
+}
+.name{
+    padding-bottom: 0%;
+}
+.nameoncard{
+    font-weight:700;
+}
+.card-number{
+    padding-top: 1em;
+}
+.cardnumber{
+    font-weight: 700;
+}
+.input-box-2{
+    width: 17em;
+    height: 3em;
+}
+.expiry{
+    padding-top: 1em;
+}
+.edate{
+    font-weight:700;
+}
+.input-box-3{
+    width: 14em;
+    height: 3em;
+}
+.makepayment{
+    color: rgb(229,229,229);
+    background-color: rgb(28,29,31);
+    width: 14em;
+    text-align: center;
+}
+.input-upi{
+    padding-bottom: 1em;
+}
+.makepaymenttext{
+    font-weight: 600;
+}
+.ordiv{
+    align-items: center;
+
+}
+.divforor{
+    margin: auto;
+    width: 0.3em;
+    height: 17em;
+    border: 0.2px solid rgb(209,215,219);
+    background-color:  rgb(209,215,219); 
+   
+}
+.ortext{
+    position: relative;
+     top:8em;
+     right:0.5em;
+    font-weight: 600;
+}
+.logosforcreditcard{
+    padding-left: 12em;
+}

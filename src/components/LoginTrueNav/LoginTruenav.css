@@ -1,0 +1,17 @@
+.loginTrueFirstpart{
+    display: flex;
+}
+
+
+.text1{
+    padding-left: 10px;
+}
+.text2{
+    padding-left: 10px;
+}
+.text3{
+    padding-top:15px;
+}
+.logBtn {
+cursor: pointer;
+}

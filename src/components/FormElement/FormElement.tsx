@@ -5,8 +5,7 @@ import "../FormElement/FormElement.css";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useForm } from "react-hook-form";    
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { useEffect } from "react";
 import { register as registerAction } from "../../features/auth/authSlice";
@@ -34,13 +33,14 @@ function FormElement() {
     }
   },  [isError, isRegister, message, navigate, dispatch]);
 
-  const registerUser = (data) => {
+  const registerUser = (e,data) => {
+    e.preventDefault();
     const userData = {
       name: data.name,
       password: data.password,
       email: data.email,
     };
-    dispatch(registerAction(userData));
+    dispatch(registerAction(userData)); 
   };
   return (
     <>

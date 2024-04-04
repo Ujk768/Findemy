@@ -33,8 +33,6 @@ export default function LoginForm() {
       navigate("/");
       toast(`${message}`,{type:"success"})
     }
-
-    dispatch(reset());
   }, [ isError, isLogin, message, navigate, dispatch]);
 
   const onSubmit = (data) => {

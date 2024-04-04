@@ -12,8 +12,7 @@ import LoginFalseNav from "../LoginFalseNav/LoginFalseNav";
 import LoginTrueNavBtns from "../LoginTrueNavBtns/LoginTrueNavBtns";
 import LoginFalseNavBtns from "../LoginFalseNavBtns/LoginFalseNavBtns";
 import { Link, useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import { useAppSelector } from "../../redux/store/store";
+import { useAppSelector } from "../../store/store";
 import { useState } from "react";
 
 function Header() {
@@ -24,8 +23,8 @@ function Header() {
       <div className="icons ">
         <div className="d-flex ">
           <SearchIcon />
-          <input   
-          className="border border-dark "
+          <input
+            className="border border-dark "
             placeholder="Search for anything"
             onKeyUp={(e) => handlePress(e)}
           />
@@ -33,17 +32,19 @@ function Header() {
       </div>
     );
   }
-  // let Login = useAppSelector((state) => state.LoginReducer);
+  const { isLogin } = useAppSelector((state) => state.auth);
+
+  const user = localStorage.getItem("user");
   let element;
   let btns;
 
-  // if (Login.isLogin) {
-  //   element = <LoginTrueNav />;
-  //   btns = <LoginTrueNavBtns />;
-  // } else {
+  if (isLogin && user) {
+    element = <LoginTrueNav />;
+    btns = <LoginTrueNavBtns />;
+  } else {
     element = <LoginFalseNav />;
     btns = <LoginFalseNavBtns />;
-  // }
+  }
 
   const navigate = useNavigate();
 
@@ -67,7 +68,12 @@ function Header() {
             <div onClick={() => setSearchMobile(!searchMobile)}>
               <SearchIcon />
             </div>
-           <Link to="/cart"><ShoppingCartOutlinedIcon style={{color:"black"}} className="cartIcon" /></Link> 
+            <Link to="/cart">
+              <ShoppingCartOutlinedIcon
+                style={{ color: "black" }}
+                className="cartIcon"
+              />
+            </Link>
           </div>
 
           <Navbar.Offcanvas scroll="true" placement="start">

@@ -22,30 +22,33 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 import { ICourseDetails } from "../../utils/interface";
-import video from "../../videos/video.mp4"
+import video from "../../videos/video.mp4";
 import BestSeller from "../../components/BestSeller/BestSeller";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../redux/store/store";
-import {toast} from 'react-toastify';
-import { addToCart } from "../../redux/reducers/CartReducer";
+// import { useAppSelector } from "../../redux/store/store";
+import { toast } from "react-toastify";
+// import { addToCart } from "../../redux/reducers/CartReducer";
 export default function CourseDetails() {
   const [move, setmove] = useState(false);
   const { id } = useParams();
   const [course, setCourse] = useState<ICourseDetails>();
   console.log(id);
-  const dispatch = useDispatch()
-  const user = useAppSelector(state=>state.LoginDataReducer)
-  const  handleAddToCart= async (course)=>{
-    let data={
-      id: user.loginDetails._id,
-      course_id:course._id,
-    }
-    
-    const response =await axios.post("http://localhost:5000/users/addtocart",data)
-    console.log(response)
-    toast(`${response.data.message}`,{type:"success"})
-    dispatch(addToCart(response.data.data.course))
-  }
+  const dispatch = useDispatch();
+  // const user = useAppSelector((state) => state.LoginDataReducer);
+  // const handleAddToCart = async (course) => {
+  //   let data = {
+  //     id: user.loginDetails._id,
+  //     course_id: course._id,
+  //   };
+
+  //   const response = await axios.post(
+  //     "http://localhost:5000/users/addtocart",
+  //     data
+  //   );
+  //   console.log(response);
+  //   toast(`${response.data.message}`, { type: "success" });
+  //   dispatch(addToCart(response.data.data.course));
+  // };
 
   useEffect(() => {
     axios
@@ -65,8 +68,8 @@ export default function CourseDetails() {
     }
   };
   let bestSeller;
-  if(course?.isBestSeller){
-    bestSeller=<BestSeller/>
+  if (course?.isBestSeller) {
+    bestSeller = <BestSeller />;
   }
   return (
     <>
@@ -76,33 +79,32 @@ export default function CourseDetails() {
         <Row>{course?.title}</Row>
         <Row>
           <span>
-           <span className="stars"> {course?.rating}</span>
-            <span >({course?.numOfRatings})</span> 25,759
-            students
+            <span className="stars"> {course?.rating}</span>
+            <span>({course?.numOfRatings})</span> 25,759 students
           </span>
-         
         </Row>
       </Container>
 
       <Container fluid className="mainWrapper">
         <Container className={move ? "sideComponent2" : "sideComponent"}>
-          <video 
-          width={350}
-          height={200}
-          className={
-
+          <video
+            width={350}
+            height={200}
+            className={
               move
                 ? "sideComponentImgAfterScroll"
                 : "sideComponentImgBeforeScroll"
             }
             poster={course?.thumbnail}
             controls
-            >
-              <source src={video}/>
+          >
+            <source src={video} />
           </video>
           <h2>₹{course?.originalPrice}</h2>
           <div className="mb-2">
-            <Button className="cartBtn" onClick={()=>handleAddToCart(course)} >Add to cart</Button>
+            {/* <Button className="cartBtn" onClick={() => handleAddToCart(course)}>
+              Add to cart
+            </Button> */}
           </div>
 
           <div>

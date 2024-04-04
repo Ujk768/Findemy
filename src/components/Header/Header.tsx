@@ -12,8 +12,8 @@ import LoginFalseNav from "../LoginFalseNav/LoginFalseNav";
 import LoginTrueNavBtns from "../LoginTrueNavBtns/LoginTrueNavBtns";
 import LoginFalseNavBtns from "../LoginFalseNavBtns/LoginFalseNavBtns";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useAppSelector } from "../../redux/store/store";
+// import { useSelector } from "react-redux";
+// import { useAppSelector } from "../../redux/store/store";
 import { useState } from "react";
 
 function Header() {
@@ -33,17 +33,17 @@ function Header() {
       </div>
     );
   }
-  let Login = useAppSelector((state) => state.LoginReducer);
+  // let Login = useAppSelector((state) => state.LoginReducer);
   let element;
   let btns;
 
-  if (Login.isLogin) {
-    element = <LoginTrueNav />;
-    btns = <LoginTrueNavBtns />;
-  } else {
+  // if (Login.isLogin) {
+  //   element = <LoginTrueNav />;
+  //   btns = <LoginTrueNavBtns />;
+  // } else {
     element = <LoginFalseNav />;
     btns = <LoginFalseNavBtns />;
-  }
+  // }
 
   const navigate = useNavigate();
 

@@ -6,8 +6,8 @@ import Rating from '@mui/material/Rating';
 import { useDispatch } from "react-redux";
 import './SearchedResults.css'
 import BestSeller from "../BestSeller/BestSeller";
-import { addToCart } from "../../redux/reducers/CartReducer";
-import { useAppSelector } from "../../redux/store/store";
+// import { addToCart } from "../../redux/reducers/CartReducer";
+// import { useAppSelector } from "../../redux/store/store";
 import {  toast } from 'react-toastify';
 import axios from "axios";
 type SearchResults = {
@@ -20,17 +20,17 @@ export default function SearchedResults(props: SearchResults) {
         bestSeller=<BestSeller/>
     }
     const dispatch = useDispatch()
-    const user = useAppSelector(state=>state.LoginDataReducer)
+   // const user = useAppSelector(state=>state.LoginDataReducer)
     const  handleAddToCart= async (course)=>{
-      let data={
-        id: user.loginDetails._id,
-        course_id:course._id,
-      }
+      // let data={
+      //   id: user.loginDetails._id,
+      //   course_id:course._id,
+      // }
       
-      const response =await axios.post("http://localhost:5000/users/addtocart",data)
-      console.log(response)
-      toast(`${response.data.message}`,{type:"success"})
-      dispatch(addToCart(response.data.data.course))
+      // const response =await axios.post("http://localhost:5000/users/addtocart",data)
+      // console.log(response)
+      // toast(`${response.data.message}`,{type:"success"})
+      // dispatch(addToCart(response.data.data.course))
     }
   return (
     <>

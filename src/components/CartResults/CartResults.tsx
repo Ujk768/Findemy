@@ -3,9 +3,9 @@ import { Container, Row, Col,Button } from "react-bootstrap";
 import { ICourseDetails } from "../../utils/interface";
 import Rating from "@mui/material/Rating";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../redux/store/store";
+// import { useAppSelector } from "../../redux/store/store";
 import {toast} from 'react-toastify';
-import { removeFromCart, setCart } from "../../redux/reducers/CartReducer";
+// import { removeFromCart, setCart } from "../../redux/reducers/CartReducer";
 import axios from "axios"
 import { Link } from "react-router-dom";
 import './CartResults.css'
@@ -15,20 +15,20 @@ type CardResults = {
 
 export default function CartResults(props: CardResults) {
   const dispatch = useDispatch()
-  const user = useAppSelector(state=>state.LoginDataReducer)
+//   const user = useAppSelector(state=>state.LoginDataReducer)
 
   const handleRemoveCart = async(course : ICourseDetails)=>{
-      console.log("id:" , user.loginDetails._id)
-      console.log("course_id:" , course._id)
-    let data={
-      id: user.loginDetails._id,
-      course_id:course._id,
-    }
+    //   console.log("id:" , user.loginDetails._id)
+    //   console.log("course_id:" , course._id)
+    // let data={
+    //   id: user.loginDetails._id,
+    //   course_id:course._id,
+    // }
     
-    const response =await axios.post("http://localhost:5000/users/removefromcart",data)
-      console.log(response.data.data)
-      dispatch(removeFromCart(response.data.data))
-      toast('Removed from cart',{type:"success"})
+    // const response =await axios.post("http://localhost:5000/users/removefromcart",data)
+    //   console.log(response.data.data)
+    //   dispatch(removeFromCart(response.data.data))
+    //   toast('Removed from cart',{type:"success"})
 
   }
   return (

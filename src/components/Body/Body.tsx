@@ -9,37 +9,24 @@ import { useEffect, useState } from "react";
 import { ICourseDetails } from "../../utils/interface";
 import { Link } from "react-router-dom";
 
-
-
 function Body() {
-
-  const [courses,setCourses]= useState<ICourseDetails[]>([])
-    useEffect(() => {
-    
-    axios.get('http://localhost:5000/courses/getcourses')
-                .then((response)=>{
-                  console.log(response.data)
-                  setCourses(response.data)})
-  
-    
-  }, [])
-  
+  const [courses, setCourses] = useState<ICourseDetails[]>([]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/courses/getcourses").then((response) => {
+      setCourses(response.data);
+    });
+  }, []);
 
   return (
     <div>
       <h4 className="first-title">Students are viewing</h4>
 
-      <Carousel cols={4} rows={1}  >
-        {courses?.map((c:ICourseDetails)=>(
-          
-           <Carousel.Item>
-           <CardEle
-                 courses={c}
-               />
-           </Carousel.Item>
+      <Carousel cols={4} rows={1}>
+        {courses?.map((c: ICourseDetails) => (
+          <Carousel.Item key={c._id}>
+            <CardEle courses={c} />
+          </Carousel.Item>
         ))}
-       
-       
       </Carousel>
 
       <div className="mainFooter1">
@@ -49,15 +36,21 @@ function Body() {
             <Col xs={6} sm={6} md={3}>
               <Row className="heading">Development</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=python">Python</Link>
+                <Link to="http://localhost:3000/search?query=python">
+                  Python
+                </Link>
               </Row>
               <Row className="students">36,354,994 students</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=web%20dev">Web Dev</Link>
+                <Link to="http://localhost:3000/search?query=web%20dev">
+                  Web Dev
+                </Link>
               </Row>
               <Row className="students">11,415,615 students</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=machine%20learning">ML</Link>
+                <Link to="http://localhost:3000/search?query=machine%20learning">
+                  ML
+                </Link>
               </Row>
               <Row className="students">7,070,015 students</Row>
             </Col>
@@ -112,9 +105,11 @@ function Body() {
       </div>
       <div className="second-footer">
         <Container>
-          <div className="text" >
-            <h2 style={{textAlign:"center"}}>Trusted by over 13,400 great teams</h2>
-            <p style={{textAlign:"center"}}>
+          <div className="text">
+            <h2 style={{ textAlign: "center" }}>
+              Trusted by over 13,400 great teams
+            </h2>
+            <p style={{ textAlign: "center" }}>
               Leading companies use the same courses to help employees keep
               their skills fresh.
             </p>

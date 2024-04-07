@@ -24,7 +24,6 @@ export const createAuthService = () => {
 
   const loginUser = async (userData: ILoginUserData) => {
     try {
-
       const response = await axios.post(LOGIN_API_URL, userData);
       if (response.data) {
         localStorage.setItem("user", JSON.stringify(response.data));

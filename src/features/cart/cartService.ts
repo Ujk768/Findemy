@@ -1,13 +1,35 @@
 import axios, { AxiosError } from "axios";
+import { setCookie } from "../utils";
+
+type cartUserReqData = {
+  id: string;
+  courseId: string;
+};
+
+type UserData = {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+};
+
+const user = localStorage.getItem("user") as unknown as UserData;
+const config = {
+  headers: { Authorization: `Bearer ${user ? user.token : ""}` },
+};
 
 export const useCartService = () => {
-  const addToCart = async (data) => {
+  const addToCart = async (data: cartUserReqData) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/addtocart",
-        data
+        data,
+        config
       );
-      return response;
+      if (response.data) {
+        setCookie("cart", response.data);
+      }
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
@@ -20,9 +42,13 @@ export const useCartService = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/removefromcart",
-        data
+        data,
+        config
       );
-      return response;
+      if (response.data) {
+        setCookie("cart", response.data);
+      }
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
@@ -34,14 +60,21 @@ export const useCartService = () => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/getCart",
-        data
+        data,
+        config
       );
-      return response;
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
         throw new Error(message);
       } else throw new Error("Error Removing from Cart");
     }
+  };
+
+  return {
+    getCart,
+    addToCart,
+    removeFromCart,
   };
 };

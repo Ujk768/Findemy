@@ -38,7 +38,7 @@ function Header() {
   let element;
   let btns;
 
-  if (isLogin && user) {
+  if ( user) {
     element = <LoginTrueNav />;
     btns = <LoginTrueNavBtns />;
   } else {

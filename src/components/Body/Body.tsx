@@ -20,14 +20,15 @@ function Body() {
   return (
     <div>
       <h4 className="first-title">Students are viewing</h4>
-
-      <Carousel cols={4} rows={1}>
-        {courses?.map((c: ICourseDetails) => (
-          <Carousel.Item key={c._id}>
-            <CardEle courses={c} />
-          </Carousel.Item>
-        ))}
-      </Carousel>
+      <div className="carousel-cards">
+        <Carousel cols={4} rows={1}>
+          {courses?.map((c: ICourseDetails) => (
+            <Carousel.Item key={c._id}>
+              <CardEle courses={c} />
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
 
       <div className="mainFooter1">
         <Container>

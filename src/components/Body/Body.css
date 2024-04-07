@@ -54,3 +54,8 @@
     flex-direction: row;
     border: 2px solid black;
 }
+.carousel-cards{
+    padding: 10px 0;
+    min-height: 350px;
+    max-height: 450px;
+}

@@ -1,23 +1,21 @@
-.text{
-    text-align: left !important;
-    line-height: 1;
-    margin: 0;
-    color: black;
-    font-size: 0.8em !important;
-}
-.bodyText{
-    color: black;
-}
-.title{
-    color: black;
-    font-size: 1em !important;
-}
+
 .card-img{
-    border-radius: 0 !important;
-    border: 0px solid transparent !important;
+    max-height: 200px;
+    max-width: 400px;
 }
-.textPrice{
+
+.card-item{
+    max-height: 360px;
+    margin-bottom: 4px;
+    p{
+        margin: 0 !important;
+        font-weight: 100 ;
+        padding: 1px 0;
+    }
     color: black;
-    font-size: 0.8em !important;
-    font-weight: 600;
+}
+
+p.fw-550{
+    font-weight: 550;
+    padding-top: 5px;
 }

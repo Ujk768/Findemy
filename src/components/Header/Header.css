@@ -109,11 +109,13 @@ input {
 }
 .allBtns {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 20%;
 }
 .mainNavbar{
   z-index: 10;
   background-color: white;
+  padding: 10px 0;
 }
 
 

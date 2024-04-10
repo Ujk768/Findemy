@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import Header from "../../components/Header/Header";
 import CartResults from "../../components/CartResults/CartResults";
 import Footer from "../../components/Footer/Footer";
@@ -14,10 +13,24 @@ import { useNavigate } from "react-router-dom";
 export default function CartPage() {
   const { isLogin } = useAppSelector((state) => state.auth);
   const { cartItems } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  if (!isLogin) {
-    navigate("/");
-  }
+  const user = localStorage.getItem("user");
+  const userObj: User = user ? JSON.parse(user) : "";
+
+  // Effect hook to navigate when isLogin changes
+  useEffect(() => {
+    if (!isLogin) {
+      navigate("/");
+    }
+  }, [isLogin, navigate]);
+
+  // Fetch cart details when component mounts
+  useEffect(() => {
+    if (isLogin && user) {
+      dispatch(getCartDetails(userObj.id));
+    }
+  }, [isLogin, user]);
 
   return (
     <>
@@ -30,10 +43,7 @@ export default function CartPage() {
               cartData={cartinfo as ICourseDetails}
             />
           ))}
-          {cartItems.length == 0 ? <div>
-            Cart is Empty
-
-          </div> : ""}
+          {cartItems.length === 0 && <div>Cart is Empty</div>}
         </>
       )}
       <Footer />

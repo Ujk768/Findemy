@@ -13,9 +13,22 @@
 .navBarBtn {
   border-radius: 50%;
   }
-.loginBtns .btn-primary {
-  --bs-btn-color: #fff;
-   --bs-btn-bg: black !important; 
-   --bs-btn-border-color:black !important;
-   --bs-btn-border-radius: 50% !important;
+.loginBtns {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
 }
+.user-btn{
+  width: 40px;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+  

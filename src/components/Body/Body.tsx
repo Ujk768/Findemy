@@ -17,19 +17,14 @@ function Body() {
   const dispatch = useAppDispatch();
   const { isLogin } = useAppSelector((state) => state.auth);
   const [courses, setCourses] = useState<ICourseDetails[]>([]);
-  const user = localStorage.getItem("user");
-  const userObj: User = user ? JSON.parse(user) : "";
+ 
   useEffect(() => {
     axios.get("http://localhost:5000/courses/getcourses").then((response) => {
       setCourses(response.data);
     });
   }, []);
 
-  useEffect(() => {
-    if (isLogin && user) {
-      dispatch(getCartDetails(userObj.id));
-    }
-  }, [isLogin, user]);
+  
   return (
     <div>
       <h4 className="first-title">Students are viewing</h4>

@@ -17,6 +17,7 @@ import { useState } from "react";
 
 function Header() {
   const [searchMobile, setSearchMobile] = useState(false);
+  const {isLogin} = useAppSelector((state)=>state.auth);
   let search;
   if (searchMobile) {
     search = (
@@ -35,7 +36,7 @@ function Header() {
   let element;
   let btns;
 
-  if ( user) {
+  if (isLogin && user) {
     element = <LoginTrueNav />;
     btns = <LoginTrueNavBtns />;
   } else {
@@ -53,7 +54,7 @@ function Header() {
 
   return (
     <>
-      <Navbar style={{ width: "100%" }} expand="md" className="mainNavbar">
+      <Navbar style={{ width: "100%", paddingTop:"10px", paddingBottom: "10px" }} expand="md" className="mainNavbar">
         <Container fluid className="mainContainer">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Link to="/">

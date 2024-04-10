@@ -8,15 +8,28 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ICourseDetails } from "../../utils/interface";
 import { Link } from "react-router-dom";
+import { createCartService } from "../../features/cart/cartService";
+import { User } from "../../features/auth/authType";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { getCartDetails } from "../../features/cart/cartSlice";
 
 function Body() {
+  const dispatch = useAppDispatch();
+  const { isLogin } = useAppSelector((state) => state.auth);
   const [courses, setCourses] = useState<ICourseDetails[]>([]);
+  const user = localStorage.getItem("user");
+  const userObj: User = user ? JSON.parse(user) : "";
   useEffect(() => {
     axios.get("http://localhost:5000/courses/getcourses").then((response) => {
       setCourses(response.data);
     });
   }, []);
 
+  useEffect(() => {
+    if (isLogin && user) {
+      dispatch(getCartDetails(userObj.id));
+    }
+  }, [isLogin, user]);
   return (
     <div>
       <h4 className="first-title">Students are viewing</h4>
@@ -106,11 +119,11 @@ function Body() {
       </div>
       <div className="second-footer">
         <Container>
-          <div className="text">
+          <div>
             <h2 style={{ textAlign: "center" }}>
               Trusted by over 13,400 great teams
             </h2>
-            <p style={{ textAlign: "center" }}>
+            <p>
               Leading companies use the same courses to help employees keep
               their skills fresh.
             </p>

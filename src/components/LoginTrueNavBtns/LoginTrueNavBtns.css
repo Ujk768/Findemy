@@ -12,7 +12,7 @@
 }
 .navBarBtn {
   border-radius: 50%;
-}
+  }
 .loginBtns .btn-primary {
   --bs-btn-color: #fff;
    --bs-btn-bg: black !important; 

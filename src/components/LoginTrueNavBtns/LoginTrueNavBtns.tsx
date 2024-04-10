@@ -2,37 +2,14 @@ import React from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Button, DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import { useAppSelector, useAppDispatch } from "../../store/store";
+import { useAppDispatch } from "../../store/store";
 import { Link } from "react-router-dom";
 
 import "./LoginTrueNavBtns.css";
 import { logout, reset } from "../../features/auth/authSlice";
-type User = {
-  name: string;
-  email: string;
-  id: string;
-};
+import { generateIntials } from "../../features/utils";
 
 export default function LoginTrueNavBtns() {
-  const { isLogin } = useAppSelector((state) => state.auth);
-  const user = localStorage.getItem("user");
-  const userObj : User = JSON.parse(user ? user : "");
-  const generateIntials = () => {
-    if (user && isLogin) {
-      let name = userObj?.name;
-      const myArray = name.split(" ");
-      const firstLetter = myArray[0]?.charAt(0);
-      const lastLetter = myArray[1]?.charAt(0);
-      let initial = "";
-      if (firstLetter) {
-        initial = initial + firstLetter;
-      }
-      if (lastLetter) {
-        initial = initial + " " + lastLetter;
-      }
-      return initial;
-    }
-  };
   const dispatch = useAppDispatch();
 
   return (
@@ -44,7 +21,7 @@ export default function LoginTrueNavBtns() {
           <Link to="/cart">
             <ShoppingCartOutlinedIcon style={{ color: "black" }} />
           </Link>
-        </div>
+        </div>    
         <NotificationsActiveIcon className="notifBtn me-2" />
         <div className="navBarBtn">
           <DropdownButton title={generateIntials()} drop="start">
@@ -52,7 +29,7 @@ export default function LoginTrueNavBtns() {
             <Dropdown.Item>
               <div>
                 <Link to="/cart">My Cart</Link>
-              </div>
+</div>
             </Dropdown.Item>
             <Dropdown.Item>
               {" "}

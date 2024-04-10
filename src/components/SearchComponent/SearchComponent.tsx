@@ -15,7 +15,7 @@ export default function SearchComponent({ searchQuery }) {
         setResult(response.data.data);
       });
   }, []);
-  console.log(result);
+
   return (
     <Container>
       <Row>

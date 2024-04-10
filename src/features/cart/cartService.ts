@@ -1,9 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { setCookie } from "../utils";
+import { toast } from "react-toastify";
+import { User } from "../auth/authType";
 
 type cartUserReqData = {
   id: string;
-  courseId: string;
+  course_id: string;
 };
 
 type UserData = {
@@ -13,28 +15,40 @@ type UserData = {
   token: string;
 };
 
-const user = localStorage.getItem("user") as unknown as UserData;
-const config = {
-  headers: { Authorization: `Bearer ${user ? user.token : ""}` },
+// Function to retrieve user object from localStorage
+const getUserFromLocalStorage = (): UserData | null => {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
 };
 
-export const useCartService = () => {
+// Function to create Axios config with user token
+const getConfigWithToken = (): { headers: { Authorization: string } } => {
+  const user = getUserFromLocalStorage();
+  const token = user ? user.token : "";
+  return {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+};
+
+export const createCartService = () => {
   const addToCart = async (data: cartUserReqData) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/addtocart",
         data,
-        config
+        getConfigWithToken()
       );
-      if (response.data) {
-        setCookie("cart", response.data);
-      }
-      return response.data;
+      toast(`${"Added to Cart"}`, { type: "success" });
+      return response.data.data.course;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
+        toast(`${message}`, { type: "error" });
         throw new Error(message);
-      } else throw new Error("Error Adding to Cart");
+      } else {
+        toast("Error Adding To cart", { type: "error" });
+        throw new Error("Error Adding to Cart");
+      }
     }
   };
 
@@ -43,32 +57,34 @@ export const useCartService = () => {
       const response = await axios.post(
         "http://localhost:5000/users/removefromcart",
         data,
-        config
+        getConfigWithToken()
       );
-      if (response.data) {
-        setCookie("cart", response.data);
-      }
+      toast(`${"Removed From Cart"}`, { type: "success" });
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
+        toast(`${message}`, { type: "error" });
         throw new Error(message);
-      } else throw new Error("Error Removing from Cart");
+      } else {
+        toast("Error Adding To cart", { type: "error" });
+        throw new Error("Error Adding to Cart");
+      }
     }
   };
   const getCart = async (data) => {
     try {
       const response = await axios.post(
         "http://localhost:5000/users/getCart",
-        data,
-        config
+        { id: data },
+        getConfigWithToken()
       );
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         const message = error.response?.data.message;
         throw new Error(message);
-      } else throw new Error("Error Removing from Cart");
+      } else throw new Error("Error Getting from Cart");
     }
   };
 

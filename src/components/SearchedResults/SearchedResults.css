@@ -9,4 +9,9 @@
 }
 .rating{
     color:#f3ca8c;
+    font-weight: 650;
+    margin-right: 5px;
+}
+.rating-wrapper{
+    display: flex;
 }

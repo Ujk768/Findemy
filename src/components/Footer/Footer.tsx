@@ -21,7 +21,7 @@ function Footer() {
               
             </Col>
           </Row>
-          <Row>
+          <Row style={{marginLeft:"1px"}} className="footer-contents">
             <Col sm={12} md={4}>
               <Row>Findemy Business</Row>
               <Row>Teach on Udemy</Row>

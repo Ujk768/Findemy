@@ -21,18 +21,15 @@ function Header() {
   if (searchMobile) {
     search = (
       <div className="icons ">
-        <div className="d-flex ">
-          <SearchIcon />
+          <SearchIcon className="search-icon" />
           <input
             className="border border-dark "
             placeholder="Search for anything"
             onKeyUp={(e) => handlePress(e)}
           />
-        </div>
       </div>
     );
   }
-  const { isLogin } = useAppSelector((state) => state.auth);
 
   const user = localStorage.getItem("user");
   let element;
@@ -56,7 +53,7 @@ function Header() {
 
   return (
     <>
-      <Navbar expand="md" className="mainNavbar">
+      <Navbar style={{ width: "100%" }} expand="md" className="mainNavbar">
         <Container fluid className="mainContainer">
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Link to="/">

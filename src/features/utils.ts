@@ -19,3 +19,33 @@ export function getCookie(cookieName: string) {
     .find((row) => row.trim().startsWith(cookieName + "="))
     ?.split("=")[1];
 }
+
+const user = localStorage.getItem("user");
+
+type User = {
+  name: string;
+  email: string;
+  id: string;
+};
+const userObj: User = user ? JSON.parse(user) : "";
+
+export const generateIntials = () => {
+  if (user) {
+    let name = userObj?.name;
+    const myArray = name.split(" ");
+    const firstLetter = myArray[0]?.charAt(0);
+    const lastLetter = myArray[1]?.charAt(0);
+    let initial = "";
+    if (firstLetter) {
+      initial = initial + firstLetter;
+    }
+    if (lastLetter) {
+      initial = initial + " " + lastLetter;
+    }
+    return initial;
+  }
+};
+
+export function deleteCookie(cookieName: string) {
+  document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}

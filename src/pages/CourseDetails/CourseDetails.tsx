@@ -24,37 +24,18 @@ import Rating from "@mui/material/Rating";
 import { ICourseDetails } from "../../utils/interface";
 import video from "../../videos/video.mp4";
 import BestSeller from "../../components/BestSeller/BestSeller";
-import { useDispatch } from "react-redux";
-// import { useAppSelector } from "../../redux/store/store";
-import { toast } from "react-toastify";
-// import { addToCart } from "../../redux/reducers/CartReducer";
+
 export default function CourseDetails() {
   const [move, setmove] = useState(false);
   const { id } = useParams();
   const [course, setCourse] = useState<ICourseDetails>();
-  console.log(id);
-  const dispatch = useDispatch();
-  // const user = useAppSelector((state) => state.LoginDataReducer);
-  // const handleAddToCart = async (course) => {
-  //   let data = {
-  //     id: user.loginDetails._id,
-  //     course_id: course._id,
-  //   };
 
-  //   const response = await axios.post(
-  //     "http://localhost:5000/users/addtocart",
-  //     data
-  //   );
-  //   console.log(response);
-  //   toast(`${response.data.message}`, { type: "success" });
-  //   dispatch(addToCart(response.data.data.course));
-  // };
+
 
   useEffect(() => {
     axios
       .get(`http://localhost:5000/courses/getcourse/${id}`)
       .then((response) => {
-        console.log(response.data.title);
         setCourse(response.data);
       });
   }, []);
@@ -102,9 +83,9 @@ export default function CourseDetails() {
           </video>
           <h2>₹{course?.originalPrice}</h2>
           <div className="mb-2">
-            {/* <Button className="cartBtn" onClick={() => handleAddToCart(course)}>
+            <Button className="cartBtn">
               Add to cart
-            </Button> */}
+            </Button>
           </div>
 
           <div>

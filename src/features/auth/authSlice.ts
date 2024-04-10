@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createAuthService } from "./authService";
 import { ILoginUserData, IRegisterUserData } from "./authType";
-import { AxiosError } from "axios";
+
+const user = localStorage.getItem("user");
 
 const { registerUser, loginUser, logOutUser } = createAuthService();
 
 const initialState = {
-  isLogin: false,
+  isLogin: user ? true : false,
   isRegister: false,
   message: "",
   isLoading: false,
@@ -46,10 +47,10 @@ export const logout = createAsyncThunk("user/logout", async () => {
 export const authSlice = createSlice({
   name: "users",
   initialState,
-  reducers: { 
+  reducers: {
     reset: (state) => {
       state.isRegister = false;
-      state.isLogin = false;
+      state.isLogin = user ? true : false;
       state.message = "";
       state.isError = false;
       state.isLoading = false;

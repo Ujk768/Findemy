@@ -55,7 +55,6 @@
 }
 
 .third-footer{
-     /* padding: px; */
     background-color: black;
     color: white;
     font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
@@ -74,10 +73,13 @@
    
 }
  .languageBtn{
-    margin-top: 10%;
     background-color: black !important;
     color: white;
-    border: 2px solid white;
+    border: 2px solid #fff;
+    outline: none;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 
 } 
 
@@ -85,6 +87,7 @@
     color: white;
     font-size: large;
 }
+
 
 
 

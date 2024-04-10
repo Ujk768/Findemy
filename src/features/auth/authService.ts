@@ -39,6 +39,7 @@ export const createAuthService = () => {
 
   const logOutUser = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("cart");
   };
 
   return {

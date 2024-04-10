@@ -1,42 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
-import Header from '../../components/Header/Header'
-// import { useAppDispatch, useAppSelector } from '../../redux/store/store'
-// import CartResults from '../../components/CartResults/CartResults'
-import Footer from '../../components/Footer/Footer'
-import { useNavigate } from 'react-router-dom'
-// import { addToCart, setCart } from '../../redux/reducers/CartReducer'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Header from "../../components/Header/Header";
+import CartResults from "../../components/CartResults/CartResults";
+import Footer from "../../components/Footer/Footer";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { ICourseDetails } from "../../utils/interface";
+import { ICartType } from "../../features/cart/cartType";
+import { User } from "../../features/auth/authType";
+import { createCartService } from "../../features/cart/cartService";
+import { getCartDetails } from "../../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
+
 export default function CartPage() {
+  const { isLogin } = useAppSelector((state) => state.auth);
+  const { cartItems } = useAppSelector((state) => state.cart);
+  const navigate = useNavigate();
+  if (!isLogin) {
+    navigate("/");
+  }
 
-  // let user = useAppSelector(state=>state.LoginDataReducer)
-  // let cart = useAppSelector(state=>state.CartReducer)
-  // const navigate = useNavigate()
-  // const dispatch = useAppDispatch()
-
-
-
-//   useEffect(()=>{
-//     if(user.loginDetails._id){
-//       axios.get(`http://localhost:5000/users/getcart/${user.loginDetails._id}`)
-//       .then((response)=>{
-//         console.log(response.data.data)
-//         dispatch(setCart(response.data.data))
-//       })
-//     }
-//   },[user])
-// let cartEmpty
-//   if(cart.cart.length == 0){
-//     cartEmpty=<div>Cart is empty</div>
-//   }
- 
- 
   return (
     <>
-    <Header/>
-    {/* {cartEmpty}
-     {cart.cart?.map((cartinfo)=><CartResults cartData={cartinfo} />)} 
-     <Footer/> */}
+      <Header />
+      {isLogin && (
+        <>
+          {cartItems?.map((cartinfo: ICartType) => (
+            <CartResults
+              key={cartinfo._id}
+              cartData={cartinfo as ICourseDetails}
+            />
+          ))}
+          {cartItems.length == 0 ? <div>
+            Cart is Empty
+
+          </div> : ""}
+        </>
+      )}
+      <Footer />
     </>
-   
-  )
+  );
 }

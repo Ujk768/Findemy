@@ -18,8 +18,14 @@ export interface IAuthInitialState {
 }
 
 export interface IAPiOutput {
-    id: string;
-    name: string;
-    email: string;
-    token: string;
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+}
+
+export interface User {
+  name: string;
+  email: string;
+  id: string;
 }

@@ -10,7 +10,7 @@ import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import CheckOut from "./pages/CheckOut/CheckOut";
 import { ToastContainer } from "react-toastify";
 import SearchPage from "./pages/SearchPage/SearchPage";
-// import CartPage from "./pages/CartPage/CartPage";
+import CartPage from "./pages/CartPage/CartPage";
 import SuccessPage from "./pages/SuccessPage/SuccessPage";
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/loggedin" element={<LoggedInPage />}></Route>
         <Route path="/checkout" element={<CheckOut />}></Route>
         <Route path="/search" element={<SearchPage />}></Route>
-        {/* <Route path="/cart" element={<CartPage />}></Route> */}
+        <Route path="/cart" element={<CartPage />}></Route>
         <Route path="/success" element={<SuccessPage />}></Route>
       </Routes>
       <ToastContainer />

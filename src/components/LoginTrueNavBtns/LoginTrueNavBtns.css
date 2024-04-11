@@ -19,6 +19,7 @@
   justify-content: space-between;
   padding: 0 10px;
   align-items: center;
+  position: relative;
 }
 .user-btn{
   width: 40px;
@@ -30,5 +31,21 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.profile-btns-hidden{
+  display: none;
+}
+.profile-btns{
+  z-index: 10;
+  position: absolute;
+  background-color: white;
+  margin: 2px 4px;
+  padding: 10px;
+  min-width: 100px;
+  right: 4px;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  
 }
   

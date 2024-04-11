@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Button, DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
@@ -12,6 +12,20 @@ import { generateIntials } from "../../features/utils";
 
 export default function LoginTrueNavBtns() {
   const dispatch = useAppDispatch();
+  const [profileClick, setProfileClick] = useState(false);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (!event.target.closest(".user-btn")) {
+        // Clicked outside the profile button, hide profile buttons
+        setProfileClick(false);
+      }
+    }
+
+    document.body.addEventListener("click", handleClickOutside);
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -25,12 +39,14 @@ export default function LoginTrueNavBtns() {
         </div>
         <NotificationsActiveIcon className="notifBtn me-2" />
         <div className="navBarBtn">
-          <div className="user-btn">{generateIntials()}</div>
-          <div>
+          <div className="user-btn" onClick={()=>setProfileClick(!profileClick)}>{generateIntials()}</div>
+          <div className={`${profileClick ? "profile-btns":"profile-btns-hidden"}`} >
             <div>My learning</div>
+            <hr style={{margin: 4}}/>
             <div>
               <Link to="/cart">My Cart</Link>
-            </div>{" "}
+            </div>
+            <hr style={{margin: 4}}/>
             <div
               onClick={() => {
                 dispatch(logout());

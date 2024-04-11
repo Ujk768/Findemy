@@ -18,19 +18,36 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import "../CourseDetails/CourseDetails.css";
 import LanguageOutlined from "@mui/icons-material/LanguageOutlined";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
 import { ICourseDetails } from "../../utils/interface";
 import video from "../../videos/video.mp4";
 import BestSeller from "../../components/BestSeller/BestSeller";
+import { useAppDispatch } from "../../store/store";
+import { IAPiOutput } from "../../features/auth/authType";
+import { addToCartAction } from "../../features/cart/cartSlice";
 
 export default function CourseDetails() {
   const [move, setmove] = useState(false);
   const { id } = useParams();
   const [course, setCourse] = useState<ICourseDetails>();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const user = localStorage.getItem("user");
+  const userObj = user ? (JSON.parse(user) as IAPiOutput) : null;
 
-
+  const handleAddToCart = async (course) => {
+    if (user) {
+      let data = {
+        id: userObj ? userObj.id : "",
+        course_id: course._id as string,
+      };
+      dispatch(addToCartAction(data));
+    } else {
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     axios
@@ -83,7 +100,10 @@ export default function CourseDetails() {
           </video>
           <h2>₹{course?.originalPrice}</h2>
           <div className="mb-2">
-            <Button className="cartBtn">
+            <Button
+              className="cartBtn"
+              onClick={() => handleAddToCart(course?._id)}
+            >
               Add to cart
             </Button>
           </div>
@@ -171,14 +191,14 @@ export default function CourseDetails() {
         </Row>
         <Row className="course-2">
           <Col lg={6}>
-            <Row>
-              <Container className="border border-dark  m-2">
+            <Row className="learn-box">
+              <Container className="border border-dark">
                 <Row>
                   <h4>What Youll learn</h4>
                 </Row>
                 <Row>
-                  {course?.learningOutcomes.map((singlecourse) => (
-                    <Col lg={6}>
+                  {course?.learningOutcomes.map((singlecourse, index) => (
+                    <Col lg={6} key={`in-${index}`}>
                       {" "}
                       <DoneIcon />
                       {singlecourse}
@@ -188,7 +208,7 @@ export default function CourseDetails() {
               </Container>
             </Row>
             <Row>
-              <Container className=" m-2 ">
+              <Container>
                 <Row>
                   <h4>Requirements</h4>
                 </Row>
@@ -196,11 +216,11 @@ export default function CourseDetails() {
               </Container>
             </Row>
             <Row>
-              <Container className="  m-2 ">
+              <Container>
                 <Row>
                   <h4>Description</h4>
                 </Row>
-                <Row>{course?.longdescription}</Row>
+                <Row className="long-desc">{course?.longdescription}</Row>
               </Container>
               <Container>
                 <Row>
@@ -210,38 +230,35 @@ export default function CourseDetails() {
                   <h5 className="styled-2">{course?.author}</h5>
                 </Row>
 
-                <Container className="instructor-section">
-                  <Row>
-                    <Col>
+                <Container>
+                  <Row className="instructor-desc">
+                    <div className="col1">
                       <img
                         className="instructor-img"
                         src={course?.authorImage}
                       />
-                    </Col>
-                    <Col>
-                      <div style={{ textAlign: "left" }}>
-                        <div>
-                          <StarIcon style={{ fontSize: "1.5rem" }} />
-                          {course?.rating} Instructor Rating
-                        </div>
-                        <div>
-                          <WorkspacePremiumIcon />
-                          77,116 Reviews
-                        </div>
-                        <div>
-                          <PeopleAltIcon />
-                          941,376 Students
-                        </div>
-                        <div>
-                          <OndemandVideoIcon />
-                          16 Courses
-                        </div>
+                    </div>
+                    <div className="col2">
+                      <div>
+                        <StarIcon style={{ fontSize: "1.5rem" }} />
+                        {course?.rating} Instructor Rating
                       </div>
-                    </Col>
+                      <div>
+                        <WorkspacePremiumIcon />
+                        77,116 Reviews
+                      </div>
+                      <div>
+                        <PeopleAltIcon />
+                        941,376 Students
+                      </div>
+                      <div>
+                        <OndemandVideoIcon />
+                        16 Courses
+                      </div>
+                    </div>
                   </Row>
                 </Container>
-
-                <Container className="mt-5">
+                <Container className="author-desc">
                   <Row>{course?.authorDescription}</Row>
                 </Container>
               </Container>

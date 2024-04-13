@@ -37,11 +37,11 @@ export default function CourseDetails() {
   const user = localStorage.getItem("user");
   const userObj = user ? (JSON.parse(user) as IAPiOutput) : null;
 
-  const handleAddToCart = async (course) => {
+  const handleAddToCart = async (courseID) => {
     if (user) {
       let data = {
         id: userObj ? userObj.id : "",
-        course_id: course._id as string,
+        course_id: courseID as string,
       };
       dispatch(addToCartAction(data));
     } else {
@@ -84,63 +84,65 @@ export default function CourseDetails() {
       </Container>
 
       <Container fluid className="mainWrapper">
-        <Container className={move ? "sideComponent2" : "sideComponent"}>
-          <video
-            width={350}
-            height={200}
-            className={
-              move
-                ? "sideComponentImgAfterScroll"
-                : "sideComponentImgBeforeScroll"
-            }
-            poster={course?.thumbnail}
-            controls
-          >
-            <source src={video} />
-          </video>
-          <h2>₹{course?.originalPrice}</h2>
-          <div className="mb-2">
-            <Button
-              className="cartBtn"
-              onClick={() => handleAddToCart(course?._id)}
+        <Row>
+          <Container className={move ? "sideComponent2" : "sideComponent"}>
+            <video
+              width={350}
+              height={200}
+              className={
+                move
+                  ? "sideComponentImgAfterScroll"
+                  : "sideComponentImgBeforeScroll"
+              }
+              poster={course?.thumbnail}
+              controls
             >
-              Add to cart
-            </Button>
-          </div>
+              <source src={video} />
+            </video>
+            <h2>₹{course?.originalPrice}</h2>
+            <div className="mb-2">
+              <Button
+                className="cartBtn"
+                onClick={() => handleAddToCart(course?._id)}
+              >
+                Add to cart
+              </Button>
+            </div>
 
-          <div>
-            <Button className="buyNowBtn">Buy now</Button>
-          </div>
-          <div className="para">30-Day Money-Back Guarantee</div>
-          <div>
-            <h5>This course includes:</h5>
-            <div className="listele">
-              <div>
-                <OndemandVideoIcon /> 14 hours on-demand video
-              </div>
-              <div>
-                <DescriptionOutlinedIcon /> 1 article
-              </div>
-              <div>
-                <SystemUpdateAltOutlinedIcon /> 3 downloadable resources
-              </div>
-              <div>
-                <AllInclusiveOutlinedIcon /> Full lifetime access
-              </div>
-              <div>
-                <MobileFriendlyOutlinedIcon /> Access on mobile and TV
-              </div>
-              <div>
-                <EmojiEventsOutlinedIcon /> Certificate of completion
+            <div>
+              <Button className="buyNowBtn">Buy now</Button>
+            </div>
+            <div className="para">30-Day Money-Back Guarantee</div>
+            <div>
+              <h5>This course includes:</h5>
+              <div className="listele">
+                <div>
+                  <OndemandVideoIcon /> 14 hours on-demand video
+                </div>
+                <div>
+                  <DescriptionOutlinedIcon /> 1 article
+                </div>
+                <div>
+                  <SystemUpdateAltOutlinedIcon /> 3 downloadable resources
+                </div>
+                <div>
+                  <AllInclusiveOutlinedIcon /> Full lifetime access
+                </div>
+                <div>
+                  <MobileFriendlyOutlinedIcon /> Access on mobile and TV
+                </div>
+                <div>
+                  <EmojiEventsOutlinedIcon /> Certificate of completion
+                </div>
               </div>
             </div>
-          </div>
-          <div className="d-flex justify-content-between last-links p-3">
-            <div>Share</div>
-            <div>Gift this course</div>
-            <div>Apply Coupon</div>
-          </div>
-        </Container>
+            <div className="d-flex justify-content-between last-links p-3">
+              <div>Share</div>
+              <div>Gift this course</div>
+              <div>Apply Coupon</div>
+            </div>
+          </Container>
+        </Row>
         <Row className="course-1">
           <Col lg={6}>
             <Container fluid>
@@ -188,6 +190,26 @@ export default function CourseDetails() {
             </Container>
           </Col>
           <Col lg={3}></Col>
+        </Row>
+        <Row>
+          <Container className="hideDesktop">
+            <video width={350} height={200} poster={course?.thumbnail} controls>
+              <source src={video} />
+            </video>
+            <h2>₹{course?.originalPrice}</h2>
+            <div className="mb-2">
+              <Button
+                className="cartBtn"
+                onClick={() => handleAddToCart(course?._id)}
+              >
+                Add to cart
+              </Button>
+            </div>
+
+            <div>
+              <Button className="buyNowBtn">Buy now</Button>
+            </div>
+          </Container>
         </Row>
         <Row className="course-2">
           <Col lg={6}>

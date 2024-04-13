@@ -15,7 +15,7 @@
     transition: transform 250ms cubic-bezier(0,0,.38,.9);
     color: white;
     background-color: black;
-
+    height: 60px;
 }
 
 .mainWrapper{
@@ -24,7 +24,7 @@
 }
 .sideComponent{
     position: absolute;
-    left: 67%;
+left: 67%;
     width: 30vw;
     border: 1px solid #d1d7dc;
     margin: 2%;
@@ -96,9 +96,7 @@
     padding-bottom: 5%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
 }
-.sideComponentImgBeforeScroll{
 
-}
 .instructor-img{
     border-radius: 50%;
     height: 60%;
@@ -125,6 +123,15 @@
         display: none;
     }
 }
+@media(min-width: 768.9px){
+   .course-strip{
+    display: none;
+   }
+   .hideDesktop{
+    display: none;
+   }
+}
+
 .learn-box{
     margin: 10px 2px;
 }

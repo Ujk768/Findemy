@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { IRegisterUserData, ILoginUserData } from "./authType";
+import { toast } from "react-toastify";
 
 const REGISTER_API_URL = "http://localhost:5000/users/signup";
 const LOGIN_API_URL = "http://localhost:5000/users/login";
@@ -39,6 +40,7 @@ export const createAuthService = () => {
 
   const logOutUser = () => {
     localStorage.removeItem("user");
+    toast("Logged Out", { type: "success" });
     localStorage.removeItem("cart");
   };
 

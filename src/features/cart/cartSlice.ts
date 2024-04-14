@@ -1,14 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { getCookie } from "../utils";
-import { ICartType } from "./cartType";
 import { createCartService } from "./cartService";
-import { useAppSelector } from "../../store/store";
 
 const { addToCart, removeFromCart, getCart } = createCartService();
 
 const user = localStorage.getItem("user");
-const userObj: User = user ? JSON.parse(user) : "";
 
 const cartItems = localStorage.getItem("cart");
 type User = {
@@ -21,13 +16,11 @@ type cartUserReqData = {
   course_id: string;
 };
 type cartItemsType = {
-  _id:string;
-}
-
-
+  _id: string;
+};
 
 const initialState = {
-  cartItems :  [] as cartItemsType[],
+  cartItems: [] as cartItemsType[],
   cartCount: 0,
   cartLoading: false,
   message: "",
@@ -91,7 +84,7 @@ export const cartSlice = createSlice({
         const updatedCart = [...state.cartItems];
         updatedCart.push(action.payload);
         state.cartItems = action.payload;
-        localStorage.setItem("cart",JSON.stringify(updatedCart));
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
         state.cartCount = updatedCart.length;
       })
       .addCase(getCartDetails.rejected, (state, action) => {
@@ -116,19 +109,14 @@ export const cartSlice = createSlice({
         state.cartLoading = false;
       })
       .addCase(removeFromCartAction.fulfilled, (state, action) => {
-        const updatedCart = [...state.cartItems];
-        const newCart: ICartType[] = [];
-        if (updatedCart) {
-          updatedCart.map((cartItem) => {
-            if (cartItem._id !== action.payload._id) {
-              newCart.push(cartItem);
-            }
-          });
-          state.cartItems = newCart;
-          localStorage.setItem("cart", JSON.stringify(newCart));
-        }
+        let updatedCart = [...state.cartItems];
+        const newCart = updatedCart.filter((cartItem) => {
+          return cartItem._id !== `${action.payload.data._id}`;
+        });
+        state.cartItems = newCart;
+        localStorage.setItem("cart", JSON.stringify(newCart));
         state.cartLoading = false;
-        state.cartCount = updatedCart.length;
+        state.cartCount = newCart.length;
         state.message = "Removed from cart";
       })
       .addCase(removeFromCartAction.pending, (state, action) => {

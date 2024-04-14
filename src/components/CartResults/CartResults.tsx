@@ -13,18 +13,19 @@
 
   export default function CartResults(props: CardResults) {
     const dispatch = useAppDispatch();
+    const {cartItems} = useAppSelector((state)=>state.cart);
     const user = localStorage.getItem("user");
     const userObj: User = user ? JSON.parse(user) : "";
 
-    const handleRemoveCart = async (course: ICourseDetails) => {
+    const handleRemoveCart = async (courseId : string) => {
       if (user) {
         let data = {
           id: userObj ? userObj?.id : "",
-          course_id: course._id,
+          course_id: courseId  ,  
         };
 
         dispatch(removeFromCartAction(data));
-      }
+              }
     };
     return (
       <Container fluid>
@@ -56,22 +57,13 @@
                   <Row>₹{props.cartData.originalPrice}</Row>
                   <div
                     className="border border-dark addToCart"
-                    onClick={() => handleRemoveCart(props.cartData)}
+                    onClick={() => handleRemoveCart(props.cartData._id)}
                   >
                     Remove
                   </div>
                 </Col>
               </Row>
             </Container>
-          </Col>
-          <Col lg={2}>
-            <Row>Total:</Row>
-            <Row>price</Row>
-            <Row>
-              <Link to="/checkout">
-                <div className="checkOutBtn">Check out</div>
-              </Link>
-            </Row>
           </Col>
         </Row>
         <hr></hr>

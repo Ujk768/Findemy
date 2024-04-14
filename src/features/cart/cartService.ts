@@ -1,7 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { setCookie } from "../utils";
 import { toast } from "react-toastify";
-import { User } from "../auth/authType";
 
 type cartUserReqData = {
   id: string;
@@ -67,8 +65,8 @@ export const createCartService = () => {
         toast(`${message}`, { type: "error" });
         throw new Error(message);
       } else {
-        toast("Error Adding To cart", { type: "error" });
-        throw new Error("Error Adding to Cart");
+        toast("Error Removing from Cart", { type: "error" });
+        throw new Error("Error Removing from Cart");
       }
     }
   };

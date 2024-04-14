@@ -1,7 +1,7 @@
 .mainFooter1{
     background-color: #f7f9fa;
     font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;
-    padding: 10px;  
+    padding: 10px; 
     
 }
 .exploreBtn{
@@ -55,6 +55,7 @@
 }
 
 .third-footer{
+    padding: 10px 0;
     background-color: black;
     color: white;
     font-family: udemy sans,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol;

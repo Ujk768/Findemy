@@ -9,6 +9,7 @@ import { User } from "../../features/auth/authType";
 import { createCartService } from "../../features/cart/cartService";
 import { getCartDetails } from "../../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
+import "./CartPage.css";
 
 export default function CartPage() {
   const { isLogin } = useAppSelector((state) => state.auth);
@@ -23,14 +24,14 @@ export default function CartPage() {
     if (!isLogin) {
       navigate("/");
     }
-  }, [isLogin, navigate]);
+  }, [isLogin, navigate,cartItems]);
 
   // Fetch cart details when component mounts
   useEffect(() => {
     if (isLogin && user) {
       dispatch(getCartDetails(userObj.id));
     }
-  }, [isLogin, user]);
+  }, [isLogin]);
 
   return (
     <>
@@ -43,7 +44,7 @@ export default function CartPage() {
               cartData={cartinfo as ICourseDetails}
             />
           ))}
-          {cartItems.length === 0 && <div>Cart is Empty</div>}
+          {cartItems.length === 0 && <div className="cart-empty">Cart is Empty</div>}
         </>
       )}
       <Footer />

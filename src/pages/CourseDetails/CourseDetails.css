@@ -69,6 +69,9 @@ left: 67%;
     border-radius: 0;
     border: 1px solid black;
 }
+.video-desc{
+   padding: 20px;
+}
 .para{
     font-size: 12px;
     text-align: center;

@@ -192,7 +192,7 @@ export default function CourseDetails() {
           <Col lg={3}></Col>
         </Row>
         <Row>
-          <Container className="hideDesktop">
+          <Container className="hideDesktop video-desc">
             <video width={350} height={200} poster={course?.thumbnail} controls>
               <source src={video} />
             </video>

@@ -37,7 +37,7 @@ export default function CartPage() {
     <>
       <Header />
       {isLogin && (
-        <>
+        <div className="cart-empty">
           {cartItems?.map((cartinfo: ICartType) => (
             <CartResults
               key={cartinfo._id}
@@ -45,7 +45,7 @@ export default function CartPage() {
             />
           ))}
           {cartItems.length === 0 && <div className="cart-empty">Cart is Empty</div>}
-        </>
+        </div>
       )}
       <Footer />
     </>

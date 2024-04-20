@@ -101,16 +101,16 @@ export default function CourseDetails() {
             </video>
             <h2>₹{course?.originalPrice}</h2>
             <div className="mb-2">
-              <Button
+              <div
                 className="cartBtn"
                 onClick={() => handleAddToCart(course?._id)}
               >
                 Add to cart
-              </Button>
+              </div>
             </div>
 
             <div>
-              <Button className="buyNowBtn">Buy now</Button>
+              <div className="buyNowBtn">Buy now</div>
             </div>
             <div className="para">30-Day Money-Back Guarantee</div>
             <div>
@@ -198,12 +198,12 @@ export default function CourseDetails() {
             </video>
             <h2>₹{course?.originalPrice}</h2>
             <div className="mb-2">
-              <Button
+              <div
                 className="cartBtn"
                 onClick={() => handleAddToCart(course?._id)}
               >
                 Add to cart
-              </Button>
+              </div>
             </div>
 
             <div>

@@ -57,10 +57,17 @@ left: 67%;
 }
 .cartBtn{
     width: 100%;
-    background-color: #a435f0;
+    background-color: #1c1d1f;
     color: #fff;
     border-radius: 0;
     border: 0;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+}
+.cartBtn :hover{
+    background-color: #1c1d1f;
+    color: #fff;
 }
 .buyNowBtn{
     width: 100%;
@@ -68,6 +75,9 @@ left: 67%;
     color: black;
     border-radius: 0;
     border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
 }
 .video-desc{
    padding: 20px;

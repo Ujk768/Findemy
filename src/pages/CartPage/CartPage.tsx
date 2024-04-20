@@ -38,6 +38,7 @@ export default function CartPage() {
       <Header />
       {isLogin && (
         <div className="cart-empty">
+          <h4 className="title">Your Cart Details: </h4>
           {cartItems?.map((cartinfo: ICartType) => (
             <CartResults
               key={cartinfo._id}

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { createCartService } from "./cartService";
+import { ICourseDetails } from "../../utils/interface";
 
 const { addToCart, removeFromCart, getCart } = createCartService();
 
@@ -15,7 +16,7 @@ type cartUserReqData = {
   id: string;
   course_id: string;
 };
-type cartItemsType = {
+interface cartItemsType extends ICourseDetails {
   _id: string;
 };
 

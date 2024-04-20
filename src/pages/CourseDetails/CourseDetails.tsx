@@ -110,7 +110,9 @@ export default function CourseDetails() {
             </div>
 
             <div>
-              <div className="buyNowBtn">Buy now</div>
+              <div onClick={() => navigate("/checkout")} className="buyNowBtn">
+                Buy now
+              </div>
             </div>
             <div className="para">30-Day Money-Back Guarantee</div>
             <div>

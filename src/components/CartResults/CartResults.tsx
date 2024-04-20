@@ -58,8 +58,11 @@ export default function CartResults(props: CardResults) {
               </Col>
               <Col className="price-sec">
                 <Container>
-                  <Row className="bold row">
-                    ₹{props.cartData.originalPrice}
+                  <Row className="original bold">
+                    ₹ {props.cartData.discountedPrice}
+                  </Row>
+                  <Row className="discount ">
+                    ₹ {props.cartData.originalPrice}
                   </Row>
                   <Row
                     className="remove-btn"

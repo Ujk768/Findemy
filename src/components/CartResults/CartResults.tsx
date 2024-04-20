@@ -57,13 +57,17 @@ export default function CartResults(props: CardResults) {
                 <Row>{props.cartData.level}</Row>
               </Col>
               <Col className="price-sec">
-                <Row className="bold">₹{props.cartData.originalPrice}</Row>
-                <div
-                  className="border border-dark addToCart"
-                  onClick={() => handleRemoveCart(props.cartData._id)}
-                >
-                  Remove
-                </div>
+                <Container>
+                  <Row className="bold row">
+                    ₹{props.cartData.originalPrice}
+                  </Row>
+                  <Row
+                    className="remove-btn"
+                    onClick={() => handleRemoveCart(props.cartData._id)}
+                  >
+                    Remove
+                  </Row>
+                </Container>
               </Col>
             </Row>
           </Container>

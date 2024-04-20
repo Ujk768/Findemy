@@ -62,8 +62,7 @@ export default function SearchedResults(props: SearchResults) {
               <Col>
                 <Row>
                   <div className="rating-wrapper">
-                    <span className="rating"> {props.searchData.rating}</span>
-
+                    <span> {props.searchData.rating}</span>
                     <Rating
                       name="half-rating"
                       defaultValue={props.searchData.rating}
@@ -75,18 +74,20 @@ export default function SearchedResults(props: SearchResults) {
                 {bestSeller}
               </Col>
               <Col>
-                <Button
-                  className="w-100 rounded-0 cartButton"
+                <div
+                  className="w-100 rounded-0 remove-btn"
                   onClick={() => handleAddToCart(props.searchData)}
                 >
                   Add to cart
-                </Button>
+                </div>
               </Col>
             </Row>
           </Col>
           <Col lg={1}>
-            <Row className="original">₹ {props.searchData.discountedPrice}</Row>
-            <Row className="discount">₹ {props.searchData.originalPrice}</Row>
+            <Row className="original bold">
+              ₹ {props.searchData.discountedPrice}
+            </Row>
+            <Row className="discount ">₹ {props.searchData.originalPrice}</Row>
           </Col>
         </Row>
       </Container>

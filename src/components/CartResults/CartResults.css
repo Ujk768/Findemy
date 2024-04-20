@@ -22,7 +22,6 @@
 }
 .rating{
     display: flex;
-    justify-content: space-between;
 }
 .bold{
     font-weight: 700;
@@ -31,7 +30,11 @@
     margin: 10px;
 }
 .course-img{
-    /* min-height: 250px;
-    min-width: 250px; */
     min-height: 100px;
+}
+.remove-btn{
+    width: fit-content;
+   text-decoration: underline;
+   font-weight: 600;
+   cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Dropdown from "../../components/DropDown/DropDown";
 import "../CheckOut/CheckOut.css";
@@ -7,17 +7,28 @@ import Drop from "../../components/Drop/Drop";
 import LockIcon from "@mui/icons-material/Lock";
 import { NavLink, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { CheckoutContext } from "../../context/checkoutContext";
+import { useAppSelector } from "../../store/store";
 
 export default function Checkout() {
+  const { cartItems } = useAppSelector((state) => state.cart);
+  const [checkoutValue, setCheckoutValue] = useState(0);
+
+  const getTotalCheckout = () => {
+    let total = 0;
+    if (cartItems) {
+      total = cartItems.reduce((acc, item) => acc + item.discountedPrice, 0);
+    }
+    return total.toFixed(2) ? Number(total.toFixed(2)) : total;
+  };
+
+  useEffect(() => {
+    setCheckoutValue(getTotalCheckout());
+  }, [cartItems]);
   return (
     <>
       <nav>
         <Container fluid className="checkout-navbar-main d-flex">
-          <div className="checkout-nav-udemy-image">
-            {/* <NavLink >
-                            <img src="https://logos-world.net/wp-content/uploads/2021/11/Udemy-Logo.png" alt="Udemy image" />
-                    </NavLink> */}
-          </div>
           <div className="checkout-nav-cancel-button-div">
             <button type="button" className="checkout-nav-cancel-button">
               <Link to="/">
@@ -79,19 +90,11 @@ export default function Checkout() {
               <div className="row">
                 <div className="col-12 summary-text-col">Summary</div>
               </div>
-              <div className="row original-price-text-row">
-                <div className="col-8 original-price-text-col">
-                  Original Price:
-                </div>
-                <div className="col-3 rupee-col ">
-                  <span> &#x20B9;3,999</span>
-                </div>
-              </div>
 
               <div className="row total-text-row">
                 <div className="col-8 total-text-col">Total:</div>
                 <div className="col-3 total-rupee-col ">
-                  <span> &#x20B9;3,999</span>
+                  <span> &#x20B9;{checkoutValue}</span>
                 </div>
               </div>
 

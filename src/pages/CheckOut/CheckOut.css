@@ -13,9 +13,11 @@
     z-index: 50;
 }
 .checkout-nav-udemy-image{
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+    width: 20px;
+    height: 20px;
 }
 .checkout-nav-cancel-button{
     display: inline-flex;

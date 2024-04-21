@@ -27,6 +27,9 @@ export default function LoginTrueNavBtns() {
       document.body.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  useEffect(()=>{
+    generateIntials();
+  },[isLogin]);
 
   return (
     <>

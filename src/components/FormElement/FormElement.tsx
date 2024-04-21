@@ -33,8 +33,7 @@ function FormElement() {
     }
   },  [isError, isRegister, message, navigate, dispatch]);
 
-  const registerUser = (e,data) => {
-    e.preventDefault();
+  const registerUser = (data) => {
     const userData = {
       name: data.name,
       password: data.password,

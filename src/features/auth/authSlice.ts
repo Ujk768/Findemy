@@ -18,6 +18,7 @@ export const register = createAsyncThunk(
   "users/register",
   async (user: IRegisterUserData, thunkAPI) => {
     try {
+      console.log("inisde registed action");
       const response = await registerUser(user);
       return await response;
     } catch (error) {
@@ -59,6 +60,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
+        console.log("inside register fullfilled");
         state.isLoading = false;
         state.isRegister = true;
         state.isError = false;

@@ -152,3 +152,8 @@
     border-bottom: 1px solid #d1d7dc;
     padding-bottom: 0.4rem;
 }
+.cards-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -27,10 +27,11 @@ export default function CartPage() {
     if (cartItems) {
       total = cartItems.reduce((acc, item) => acc + item.discountedPrice, 0);
     }
-    return total.toFixed(2) ? Number(total.toFixed(2)) : total;
+    return total.toFixed(2) ? Math.round(Number(total.toFixed(2))) : total;
   };
 
   useEffect(() => {
+    console.log("cartItems in cart", cartItems);
     setCheckoutValue(getTotalCheckout());
   }, [cartItems]);
 

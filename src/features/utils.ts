@@ -47,5 +47,32 @@ export const generateIntials = () => {
 };
 
 export function deleteCookie(cookieName: string) {
-  document.cookie = cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie =
+    cookieName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+type UserData = {
+  id: string;
+  name: string;
+  email: string;
+  token: string;
+};
+// Function to retrieve user object from localStorage
+export const getUserFromLocalStorage = (): UserData | null => {
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
+};
+
+// Function to create Axios config with user token
+export const getConfigWithToken = (): {
+  headers: { Authorization: string };
+} => {
+  const user = getUserFromLocalStorage();
+  const token = user ? user.token : "";
+  return {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+};
+
+export interface StripeConfig {
+  publishableKey: string;
 }

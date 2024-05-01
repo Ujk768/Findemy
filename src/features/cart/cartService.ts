@@ -1,31 +1,10 @@
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
+import { getConfigWithToken } from "../utils";
 
 type cartUserReqData = {
   id: string;
   course_id: string;
-};
-
-type UserData = {
-  id: string;
-  name: string;
-  email: string;
-  token: string;
-};
-
-// Function to retrieve user object from localStorage
-const getUserFromLocalStorage = (): UserData | null => {
-  const user = localStorage.getItem("user");
-  return user ? JSON.parse(user) : null;
-};
-
-// Function to create Axios config with user token
-const getConfigWithToken = (): { headers: { Authorization: string } } => {
-  const user = getUserFromLocalStorage();
-  const token = user ? user.token : "";
-  return {
-    headers: { Authorization: `Bearer ${token}` },
-  };
 };
 
 export const createCartService = () => {

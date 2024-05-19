@@ -1,9 +1,10 @@
 import axios, { AxiosError } from "axios";
 import { IRegisterUserData, ILoginUserData } from "./authType";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../../utils/interface";
 
-const REGISTER_API_URL = "http://localhost:5000/users/signup";
-const LOGIN_API_URL = "http://localhost:5000/users/login";
+const REGISTER_API_URL = `${BASE_URL}/users/signup`;
+const LOGIN_API_URL = `${BASE_URL}/users/login`;
 
 export const createAuthService = () => {
   //Register User

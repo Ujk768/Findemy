@@ -49,7 +49,7 @@ export default function SearchedResults(props: SearchResults) {
             {" "}
             <Link to={`/coursedetails/${props.searchData._id}`}>
               {" "}
-              <img width={200} src={props.searchData.thumbnail} />
+              <img width={300} height={200} src={props.searchData.thumbnail} />
             </Link>
           </Col>
           <Col lg={7} className="">
@@ -59,35 +59,29 @@ export default function SearchedResults(props: SearchResults) {
             <Row>{props.searchData.description}</Row>
             <Row>{props.searchData.author}</Row>
             <Row>
-              <Col>
-                <Row>
-                  <div className="rating-wrapper">
-                    <span> {props.searchData.rating}</span>
-                    <Rating
-                      name="half-rating"
-                      defaultValue={props.searchData.rating}
-                      precision={0.5}
-                      readOnly
-                    />
-                  </div>
-                </Row>
-                {bestSeller}
-              </Col>
-              <Col>
-                <div
-                  className="w-100 rounded-0 remove-btn"
-                  onClick={() => handleAddToCart(props.searchData)}
-                >
-                  Add to cart
-                </div>
-              </Col>
+              <div className="rating-wrapper">
+                <span className="bold"> {props.searchData.rating}</span>
+                <Rating
+                  name="half-rating"
+                  defaultValue={props.searchData.rating}
+                  precision={0.5}
+                  readOnly
+                />
+              </div>
             </Row>
+            <Row className="best-seller">{bestSeller} </Row>
           </Col>
           <Col lg={1}>
             <Row className="original bold">
               ₹ {props.searchData.discountedPrice}
             </Row>
-            <Row className="discount ">₹ {props.searchData.originalPrice}</Row>
+            <Row className="discount">₹ {props.searchData.originalPrice}</Row>
+            <div
+              className="w-100 rounded-0 remove-btn"
+              onClick={() => handleAddToCart(props.searchData)}
+            >
+              Add to cart
+            </div>
           </Col>
         </Row>
       </Container>

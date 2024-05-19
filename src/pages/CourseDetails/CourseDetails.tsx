@@ -20,13 +20,14 @@ import "../CourseDetails/CourseDetails.css";
 import LanguageOutlined from "@mui/icons-material/LanguageOutlined";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Rating from "@mui/material/Rating";
+import { BASE_URL } from "../../utils/interface";
 import { ICourseDetails } from "../../utils/interface";
 import video from "../../videos/video.mp4";
 import BestSeller from "../../components/BestSeller/BestSeller";
 import { useAppDispatch } from "../../store/store";
 import { IAPiOutput } from "../../features/auth/authType";
 import { addToCartAction } from "../../features/cart/cartSlice";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function CourseDetails() {
   const [move, setmove] = useState(false);
@@ -49,12 +50,28 @@ export default function CourseDetails() {
     }
   };
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/courses/getcourse/${id}`)
-      .then((response) => {
-        setCourse(response.data);
+  const handlePayment = async () => {
+    if (course) {
+      const courseDetails: ICourseDetails[] = [];
+      courseDetails.push(course);
+      console.log("courseDetials", courseDetails);
+      const stripe = await loadStripe(
+        "pk_test_51PFwib07fHGmhcVAyAtcvYqI4hwii1BC7s4oHZahW4BX05SEBCdfMJzNtbQVB6IgAfSpMqSGiZHBQDLOaRQLK7oC00KkaffD7O"
+      );
+      const response = await axios.post(
+        `${BASE_URL}/stripe/create-checkout-session`,
+        courseDetails
+      );
+      const result = stripe?.redirectToCheckout({
+        sessionId: response.data.id,
       });
+    }
+  };
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/courses/getcourse/${id}`).then((response) => {
+      setCourse(response.data);
+    });
   }, []);
 
   window.onscroll = function () {
@@ -99,7 +116,10 @@ export default function CourseDetails() {
             >
               <source src={video} />
             </video>
-            <h2>₹{course?.originalPrice}</h2>
+            <div className="d-flex">
+              <h5 className="discount">₹{course?.originalPrice}</h5>
+              <h2 className="pl-5">₹{course?.discountedPrice}</h2>
+            </div>
             <div className="mb-2">
               <div
                 className="cartBtn"
@@ -110,7 +130,7 @@ export default function CourseDetails() {
             </div>
 
             <div>
-              <div onClick={() => navigate("/checkout")} className="buyNowBtn">
+              <div onClick={() => handlePayment()} className="buyNowBtn">
                 Buy now
               </div>
             </div>

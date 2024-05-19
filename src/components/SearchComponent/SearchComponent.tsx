@@ -4,16 +4,17 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { ICourseDetails } from "../../utils/interface";
 import "../SearchComponent/SearchComponent.css";
 import SearchedResults from "../SearchedResults/SearchedResults";
-import { Link } from "react-router-dom";
+import { BASE_URL } from "../../utils/interface";
+
 export default function SearchComponent({ searchQuery }) {
   let [result, setResult] = useState<ICourseDetails[]>([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/courses/search?query=${searchQuery}`)
+      .get(`${BASE_URL}/courses/search?query=${searchQuery}`)
       .then((response) => {
         setResult(response.data.data);
       });
-  }, []);
+  }, [result]);
 
   return (
     <Container>

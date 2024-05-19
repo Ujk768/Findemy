@@ -12,6 +12,7 @@ import { createCartService } from "../../features/cart/cartService";
 import { User } from "../../features/auth/authType";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { getCartDetails } from "../../features/cart/cartSlice";
+import { BASE_URL } from "../../utils/interface";
 
 function Body() {
   const dispatch = useAppDispatch();
@@ -19,7 +20,7 @@ function Body() {
   const [courses, setCourses] = useState<ICourseDetails[]>([]);
  
   useEffect(() => {
-    axios.get("http://localhost:5000/courses/getcourses").then((response) => {
+    axios.get(`${BASE_URL}/courses/getcourses`).then((response) => {
       setCourses(response.data);
     });
   }, []);

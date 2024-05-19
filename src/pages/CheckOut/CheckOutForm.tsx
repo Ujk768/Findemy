@@ -3,28 +3,29 @@ import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { PaymentElement } from "@stripe/react-stripe-js";
 import "./CheckOut.css";
 export default function CheckOutForm(props) {
-  const stripe = useStripe();
-  const elements = useElements();
+//   const stripe = useStripe();
+//   const elements = useElements();
 
-  const handlePayClick = async () => {
-    if (!stripe || !elements) {
-      return;
-    }
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/success`,
-      },
-    });
-    if (error) {
-      console.log(error);
-    }
-  };
+//   const handlePayClick = async () => {
+//     if (!stripe || !elements) {
+//       return;
+//     }
+//     const { error } = await stripe.confirmPayment({
+//       elements,
+//       confirmParams: {
+//         return_url: `${window.location.origin}/success`,
+//       },
+//     });
+//     if (error) {
+//       console.log(error);
+//     }
+//   };
+
   return (
     <div className="check-out row">
       <div className="check-out-left col-8 cards-section">
         <div className="check-out-content col-8  ">
-          <PaymentElement />
+          {/* <PaymentElement /> */}
         </div>
       </div>
       <div className="check-out-right col-4">
@@ -49,7 +50,7 @@ export default function CheckOutForm(props) {
             </div>
             <div className="row">
               <div className="col-12 proceed-button-col">
-                <button type="button" className="proceed-button" onClick={handlePayClick}>
+                <button type="button" className="proceed-button">
                   Proceed
                 </button>
               </div>

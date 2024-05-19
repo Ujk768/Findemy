@@ -27,3 +27,5 @@ export interface IUserDetails {
 
   enrolledCourses: string[];
 }
+
+export const BASE_URL = "https://findemy-backend-pg0k.onrender.com"

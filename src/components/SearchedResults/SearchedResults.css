@@ -3,6 +3,9 @@
     h5{
         padding: 0 !important;
     }
+   .best-seller{
+    position: absolute;
+   }
 }
 .discount{
     text-decoration: line-through;
@@ -17,6 +20,7 @@
 }
 .rating-wrapper{
     display: flex;
+    padding: 0;
 }
 .bold{
     font-weight: 600;

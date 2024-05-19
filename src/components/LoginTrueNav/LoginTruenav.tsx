@@ -16,12 +16,14 @@ export default function LoginTrueNav() {
     email: string;
     id: string;
   };
+  const userObj = isLogin && (localStorage.getItem("user") as unknown as User);
 
   useEffect(() => {
-    const initial = generateIntials();
-    setName(initial ? initial : "");
-  });
-  const userObj = isLogin && (localStorage.getItem("user") as unknown as User);
+    if (isLogin && userObj) {
+      const initial = generateIntials();
+      setName(initial ? initial : "");
+    }
+  }, [isLogin, userObj]);
   return (
     <div>
       <div className="loginTrueFirstpart">

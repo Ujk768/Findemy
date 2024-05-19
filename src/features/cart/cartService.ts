@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { getConfigWithToken } from "../utils";
+import { BASE_URL } from "../../utils/interface";
 
 type cartUserReqData = {
   id: string;
@@ -11,7 +12,7 @@ export const createCartService = () => {
   const addToCart = async (data: cartUserReqData) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/users/addtocart",
+        `${BASE_URL}/users/addtocart`,
         data,
         getConfigWithToken()
       );
@@ -32,7 +33,7 @@ export const createCartService = () => {
   const removeFromCart = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/users/removefromcart",
+        `${BASE_URL}/users/removefromcart`,
         data,
         getConfigWithToken()
       );
@@ -52,7 +53,7 @@ export const createCartService = () => {
   const getCart = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/users/getCart",
+        `${BASE_URL}/users/getCart`,
         { id: data },
         getConfigWithToken()
       );

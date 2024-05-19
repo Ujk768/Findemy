@@ -33,7 +33,6 @@
     min-height: 100px;
 }
 .remove-btn{
-    width: fit-content;
    text-decoration: underline;
    font-weight: 600;
    cursor: pointer;

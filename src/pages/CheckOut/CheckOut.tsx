@@ -18,6 +18,7 @@ import { getConfigWithToken } from "../../features/utils";
 import { getCartDetails } from "../../features/cart/cartSlice";
 import { User } from "../../features/auth/authType";
 import CheckOutForm from "./CheckOutForm";
+import { BASE_URL } from "../../utils/interface";
 
 export default function Checkout() {
   const { isLogin } = useAppSelector((state) => state.auth);
@@ -52,12 +53,11 @@ export default function Checkout() {
   const getPublishKey = async () => {
     try {
       const repsonse = await axios.get(
-        "http://localhost:5000/stripe/config",
+        `${BASE_URL}/stripe/config`,
         getConfigWithToken()
       );
       if (repsonse) {
         setStripePromise(loadStripe(repsonse.data.publishableKey));
-        console.log("loadStripe done");
       }
     } catch (error) {
       console.log(error);
@@ -71,23 +71,20 @@ export default function Checkout() {
   const createPaymentIntent = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/stripe/create-payment-intent",
+        `${BASE_URL}/stripe/create-payment-intent`,
         data,
         getConfigWithToken()
       );
 
-      console.log("createPaymentIntent", response);
       if (response.data.clientSecret) {
         setClientSecret(response.data.clientSecret);
       }
-      console.log("response client secret", response.data.clientSecret);
     } catch (err) {
       console.log("error", err);
     }
   };
 
   useEffect(() => {
-    console.log("cehckoutValue");
     if (cartItems && checkoutValue && stripePromise) {
       createPaymentIntent({
         amount: Math.round(checkoutValue) * 100,
@@ -111,11 +108,10 @@ export default function Checkout() {
       <div>
         {stripePromise && clientSecret && (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <CheckOutForm checkoutValue = {checkoutValue}/>
+            <CheckOutForm checkoutValue={checkoutValue} />
           </Elements>
         )}
       </div>
-          
     </>
   );
 }

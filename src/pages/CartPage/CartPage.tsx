@@ -10,7 +10,9 @@ import { getCartDetails } from "../../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 import "./CartPage.css";
 import { Col, Container, Row } from "react-bootstrap";
-import { CheckoutContext } from "../../context/checkoutContext";
+import { BASE_URL } from "../../utils/interface";
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function CartPage() {
   const { isLogin } = useAppSelector((state) => state.auth);
@@ -31,7 +33,6 @@ export default function CartPage() {
   };
 
   useEffect(() => {
-    console.log("cartItems in cart", cartItems);
     setCheckoutValue(getTotalCheckout());
   }, [cartItems]);
 
@@ -47,50 +48,66 @@ export default function CartPage() {
     }
   }, [isLogin]);
 
+  const handlePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51PFwib07fHGmhcVAyAtcvYqI4hwii1BC7s4oHZahW4BX05SEBCdfMJzNtbQVB6IgAfSpMqSGiZHBQDLOaRQLK7oC00KkaffD7O"
+    );
+    const response = await axios.post(
+      `${BASE_URL}/stripe/create-checkout-session`,
+      cartItems
+    );
+    const result = stripe?.redirectToCheckout({
+      sessionId: response.data.id,
+    });
+  };
+
   return (
-      <>
-        <Header />
-        <Container>
-          <Row>
-            <Col lg={10}>
-              {isLogin && (
-                <div className="cart-empty">
-                  {cartItems.length > 0 ? (
-                    <h4 className="title">Your Cart Details: </h4>
-                  ) : (
-                    ""
-                  )}
-                  {cartItems?.map((cartinfo: ICartType) => (
-                    <CartResults
-                      key={cartinfo._id}
-                      cartData={cartinfo as ICourseDetails}
+    <>
+      <Header />
+      <Container className="cartPage">
+        <Row>
+          <Col lg={10}>
+            {isLogin && (
+              <div>
+                {cartItems.length > 0 ? (
+                  <h4 className="title">Your Cart Details: </h4>
+                ) : (
+                  ""
+                )}
+                {cartItems?.map((cartinfo: ICartType) => (
+                  <CartResults
+                    key={cartinfo._id}
+                    cartData={cartinfo as ICourseDetails}
+                  />
+                ))}
+                {cartItems.length === 0 && (
+                  <div className="cart-empty">
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png"
+                      alt="cart-empty"
                     />
-                  ))}
-                  {cartItems.length === 0 && (
-                    <div className="cart-empty">Cart is Empty</div>
-                  )}
-                </div>
-              )}
-            </Col>
-            <Col lg={2} className="cart-empty">
-              {cartItems.length > 0 ? (
-                <div>
-                  <h5>Checkout</h5>
-                  <div className="bold"> ₹ {checkoutValue}</div>
-                  <div
-                    onClick={() => navigate("/checkout")}
-                    className="remove-btn"
-                  >
-                    Proceed to checkout
+                    <div>Cart is Empty</div>
                   </div>
+                )}
+              </div>
+            )}
+          </Col>
+          <Col lg={2}>
+            {cartItems.length > 0 ? (
+              <div className="checkoutMobile">
+                <h5 className="bold">Checkout</h5>
+                <div className="bold"> ₹ {checkoutValue}</div>
+                <div onClick={() => handlePayment()} className="remove-btn">
+                  Proceed to checkout
                 </div>
-              ) : (
-                ""
-              )}
-            </Col>
-          </Row>
-        </Container>
-        <Footer />
-      </>
+              </div>
+            ) : (
+              ""
+            )}
+          </Col>
+        </Row>
+      </Container>
+      <Footer />
+    </>
   );
 }

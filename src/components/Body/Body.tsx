@@ -6,7 +6,7 @@ import Carousel from "react-grid-carousel";
 import "./Body.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ICourseDetails } from "../../utils/interface";
+import { FRONT_END_BASE_URL, ICourseDetails } from "../../utils/interface";
 import { Link } from "react-router-dom";
 import { createCartService } from "../../features/cart/cartService";
 import { User } from "../../features/auth/authType";
@@ -46,19 +46,19 @@ function Body() {
             <Col xs={6} sm={6} md={3}>
               <Row className="heading">Development</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=python">
+                <Link to={`${FRONT_END_BASE_URL}/search?query=python`} >
                   Python
                 </Link>
               </Row>
               <Row className="students">36,354,994 students</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=web%20dev">
+                <Link to={`${FRONT_END_BASE_URL}/search?query=web%20dev`}>
                   Web Dev
                 </Link>
               </Row>
               <Row className="students">11,415,615 students</Row>
               <Row className="coloured">
-                <Link to="http://localhost:3000/search?query=machine%20learning">
+                <Link to={`${FRONT_END_BASE_URL}/search?query=machine%20learning`}>
                   ML
                 </Link>
               </Row>

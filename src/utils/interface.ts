@@ -28,4 +28,6 @@ export interface IUserDetails {
   enrolledCourses: string[];
 }
 
-export const BASE_URL = "https://findemy-backend-pg0k.onrender.com"
+export const BASE_URL = "https://findemy-backend-pg0k.onrender.com";
+
+export const FRONT_END_BASE_URL = "https://findemy-wdn9.vercel.app/";

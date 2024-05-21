@@ -43,7 +43,7 @@ export default function SearchedResults(props: SearchResults) {
   };
   return (
     <>
-      <Container className="mainContainer" key={props.searchData._id}>
+      <Container className="searchResultContainer" key={props.searchData._id}>
         <Row>
           <Col lg={4} className="">
             {" "}
@@ -72,7 +72,7 @@ export default function SearchedResults(props: SearchResults) {
             <Row className="best-seller">{bestSeller} </Row>
           </Col>
           <Col lg={1}>
-            <Row className="original bold">
+            <Row className={`original bold ${bestSeller ? "pt-30" : ""}`}>
               ₹ {props.searchData.discountedPrice}
             </Row>
             <Row className="discount">₹ {props.searchData.originalPrice}</Row>

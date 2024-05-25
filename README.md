@@ -2,6 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+FRONT_END_URL : https://findemy-wdn9.vercel.app/
+BACK_END_URL : "https://findemy-backend-pg0k.onrender.com"
+
 ## Available Scripts
 
 In the project directory, you can run:

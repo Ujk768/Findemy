@@ -17,18 +17,29 @@ import { BASE_URL } from "../../utils/interface";
 function Body() {
   const dispatch = useAppDispatch();
   const { isLogin } = useAppSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(false);
   const [courses, setCourses] = useState<ICourseDetails[]>([]);
- 
-  useEffect(() => {
-    axios.get(`${BASE_URL}/courses/getcourses`).then((response) => {
+
+  const getCourses = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/courses/getcourses`);
       setCourses(response.data);
-    });
+      if (response) setIsLoading(false);
+      return response.data;
+    } catch (err) {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    getCourses();
   }, []);
 
-  
   return (
     <div>
       <h4 className="first-title">Students are viewing</h4>
+      {isLoading ? "Loading .........." : ""}
       <div className="carousel-cards">
         <Carousel cols={4} rows={1}>
           {courses?.map((c: ICourseDetails) => (
@@ -46,7 +57,7 @@ function Body() {
             <Col xs={6} sm={6} md={3}>
               <Row className="heading">Development</Row>
               <Row className="coloured">
-                <Link to={`${FRONT_END_BASE_URL}/search?query=python`} >
+                <Link to={`${FRONT_END_BASE_URL}/search?query=python`}>
                   Python
                 </Link>
               </Row>
@@ -58,7 +69,9 @@ function Body() {
               </Row>
               <Row className="students">11,415,615 students</Row>
               <Row className="coloured">
-                <Link to={`${FRONT_END_BASE_URL}/search?query=machine%20learning`}>
+                <Link
+                  to={`${FRONT_END_BASE_URL}/search?query=machine%20learning`}
+                >
                   ML
                 </Link>
               </Row>

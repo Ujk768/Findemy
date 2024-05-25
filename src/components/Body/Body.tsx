@@ -128,7 +128,7 @@ function Body() {
       </div>
       <div className="second-footer">
         <Container>
-          <div>
+          <div className="centered">
             <h2 style={{ textAlign: "center" }}>
               Trusted by over 13,400 great teams
             </h2>
